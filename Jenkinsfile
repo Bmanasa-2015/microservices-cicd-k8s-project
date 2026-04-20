@@ -31,7 +31,7 @@ pipeline {
             steps {
                 echo 'deploying to kuberenets'
                 withKubeConfig([credentialsId: 'kubeconfig']) {
-                    sh """
+                   
                 sh 'kubectl set image deployment/devops-app devops-container=manasabolla/devops-app:$BUILD_NUMBER'
             }
         }
