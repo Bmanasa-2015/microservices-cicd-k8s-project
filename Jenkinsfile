@@ -32,7 +32,10 @@ pipeline {
                 echo 'deploying to kuberenets'
                 withKubeConfig([credentialsId: 'kubeconfig']) {
                    
-                sh 'kubectl set image deployment/devops-app devops-container=manasabolla/devops-app:$BUILD_NUMBER'
+                sh """
+                    sed -i 's|yourdockerhub/devops-app:.*|manasabolla/devops-app:${BUILD_NUMBER}|g' k8s/deployment.yaml
+                    kubectl  apply -f k8s/deployment.yaml 
+                   """
             }
         }
     }
