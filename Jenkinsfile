@@ -29,6 +29,9 @@ pipeline {
         }
         stage('Deploy to Kubernetes') {
             steps {
+                echo '☸️ Deploying to Kubernetes...'
+                withKubeConfig([credentialsId: 'kubeconfig']) {
+                    sh """
                 sh 'kubectl set image deployment/devops-app devops-container=manasabolla/devops-app:$BUILD_NUMBER'
             }
         }
