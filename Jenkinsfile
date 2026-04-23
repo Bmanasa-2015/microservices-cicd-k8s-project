@@ -35,7 +35,7 @@ pipeline {
                 sh """
                     sed -i 's|yourdockerhub/devops-app:.*|manasabolla/devops-app:${BUILD_NUMBER}|g' k8s/deployment.yaml
                     kubectl  apply -f k8s/deployment.yaml 
-                    kubectl apply -f k8s/service.yml
+                    kubectl apply -f k8s/service.yaml
                    """
             }
         }
